@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="utf-8" />
@@ -11,8 +11,7 @@
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet"
-        type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
@@ -74,7 +73,6 @@
                         <div class="subheading mb-3">數媒系</div>
                         <p>我在大二專題做了一款名叫網路內容審查員的遊戲</p>
                     </div>
-
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
@@ -157,12 +155,10 @@
                     <li>
                         <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
                         台灣配音工會第３０期學員
-
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
                         海峽兩岸配音大賽入選
-
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
@@ -172,34 +168,84 @@
                         <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
                         遊戲程式開發者
                     </li>
-
                 </ul>
             </div>
         </section>
+        <hr class="m-0" />
+        <!-- Portfolio (10 張圖片 Bento Grid 網格排版) -->
+        <section class="resume-section" id="portfolio">
+            <div class="resume-section-content">
+                <h2 class="mb-5">作品集展示</h2>
+                <div class="bento-grid">
+                    <!-- 第一排：3 張 (各佔 4 欄) -->
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20260227.png" alt="作品 20260227" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20260322.png" alt="作品 20260322" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20260815.png" alt="作品 20260815" class="bento-img">
+                    </div>
+
+                    <!-- 第二排：4 張 (各佔 3 欄) -->
+                    <div class="bento-item col-span-3">
+                        <img src="assets/img/20261018.png" alt="作品 20261017" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-3">
+                        <img src="assets/img/20261103_2.png" alt="作品 20261103_2" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-3">
+                        <img src="assets/img/20261103_3.png" alt="作品 20261103_3" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-3">
+                        <img src="assets/img/20261105.png" alt="作品 20261105" class="bento-img">
+                    </div>
+
+                    <!-- 第三排：3 張 (各佔 4 欄) -->
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20261105_2.png" alt="作品 20261105_2" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20261109.png" alt="作品 20261109" class="bento-img">
+                    </div>
+                    <div class="bento-item col-span-4">
+                        <img src="assets/img/20261109_2.png" alt="作品 20261109_2" class="bento-img">
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <!-- 點擊放大 Fullscreen Lightbox -->
+    <div id="lightbox" class="lightbox-modal">
+        <img id="lightbox-img" src="" alt="大圖放大檢視">
+    </div>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <section class="resume-section" id="portfolio">
-    <div class="resume-section-content">
-        <h2 class="mb-5">作品集展示</h2>
-        <div class="bento-grid">
-            <!-- 跨雙欄的主打重點作品 (image1) -->
-            <div class="bento-item bento-wide">
-                <img src="assets/img/image1.jpeg" alt="作品1" class="bento-img">
-            </div>
-            <!-- 標準單欄作品卡片 1 (image2) -->
-            <div class="bento-item">
-                <img src="assets/img/image2.jpeg" alt="作品2" class="bento-img">
-            </div>
-            <!-- 標準單欄作品卡片 2 (image3) -->
-            <div class="bento-item">
-                <img src="assets/img/image3.jpeg" alt="作品3" class="bento-img">
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Lightbox JS 控制程序 -->
+    <script>
+        // 點擊作品圖片開啟大圖
+        document.querySelectorAll('.bento-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img) {
+                    const lightbox = document.getElementById('lightbox');
+                    const lightboxImg = document.getElementById('lightbox-img');
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                }
+            });
+        });
+
+        // 再次點擊畫面任意處關閉大圖並返回總覽
+        document.getElementById('lightbox').addEventListener('click', () => {
+            document.getElementById('lightbox').classList.remove('active');
+        });
+    </script>
 </body>
 
 </html>
