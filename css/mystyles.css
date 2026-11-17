@@ -33,7 +33,7 @@ h2 {
 }
 
 /* ===================================================
-4. Bento Grid 便當盒風格作品集樣式與點擊放大
+4. Bento Grid 便當盒風格作品集樣式
 =================================================== */
 .bento-grid {
   display: grid;
@@ -49,8 +49,8 @@ h2 {
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: zoom-in;
-  height: 180px; /* 控制縮圖大小不佔過多空間 */
+  cursor: pointer;
+  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@ h2 {
   transform: scale(1.05);
 }
 
-/* 手機與平板響應式調整 */
+/* 手機與平板縮圖響應式調整 */
 @media (max-width: 768px) {
   .col-span-4, .col-span-3 {
     grid-column: span 6;
@@ -102,33 +102,380 @@ h2 {
   }
 }
 
-/* 點擊放大檢視彈窗 (Lightbox) */
-.lightbox-modal {
+/* ===================================================
+5. 雙欄作品詳情檢視彈窗 (高通透半透明黑底＋置中版權列)
+=================================================== */
+.portfolio-modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 24px 72px;
   z-index: 2000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
-  cursor: zoom-out;
+  transition: opacity 0.2s ease;
 }
 
-.lightbox-modal.active {
+.portfolio-modal.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-.lightbox-modal img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  object-fit: contain; /* 放大檢視完整保留原圖比例 */
+/* 主卡片容器：更通透的半透明黑底＋無圓角＋28px 等長四角框線 */
+.portfolio-modal-container {
+  display: flex;
+  width: 100%;
+  max-width: 1040px;
+  height: 74vh;
+  max-height: 620px;
+  background-color: rgba(12, 13, 18, 0.54);
+  backdrop-filter: blur(5px);
+  border-radius: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  transform: scale(0.97);
+  transition: transform 0.2s ease;
+
+  background-image:
+    linear-gradient(to right, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to bottom, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to left, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to bottom, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to right, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to top, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to left, #e2e8f0 2px, transparent 2px),
+    linear-gradient(to top, #e2e8f0 2px, transparent 2px);
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%;
+  background-size: 2px 28px, 28px 2px;
+  background-repeat: no-repeat;
+}
+
+.portfolio-modal.active .portfolio-modal-container {
+  transform: scale(1);
+}
+
+/* 左側圖片展示區 */
+.portfolio-modal-left {
+  flex: 1.05;
+  background-color: rgba(6, 7, 10, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 24px 46px;
+  position: relative;
+}
+
+.modal-img-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.modal-img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+/* 左下角張數指示 */
+.modal-index-indicator {
+  position: absolute;
+  left: 24px;
+  bottom: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* 右下角日期標籤 */
+.modal-date-tag {
+  position: absolute;
+  right: 24px;
+  bottom: 14px;
+  padding: 2px 8px;
+  background-color: rgba(0, 0, 0, 0.52);
+  color: #f1f5f9;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  border-radius: 0;
+}
+
+/* 右側文字描述區 */
+.portfolio-modal-right {
+  flex: 1.25;
+  padding: 24px 30px 14px;
+  display: flex;
+  flex-direction: column;
+  color: #f1f5f9;
+  overflow: hidden;
+}
+
+/* 1. 作品標題列：左深右亮漸層＋14px 等長四角框線 */
+.modal-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.75) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(28, 7, 13, 0.74) 0%, rgba(72, 18, 31, 0.78) 55%, rgba(102, 25, 44, 0.86) 100%);
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%,
+    0 0;
+  background-size:
+    1.5px 14px, 14px 1.5px,
+    1.5px 14px, 14px 1.5px,
+    1.5px 14px, 14px 1.5px,
+    1.5px 14px, 14px 1.5px,
+    100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* 作品標題（宋體） */
+.modal-title {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", "PMingLiU", "SimSun", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.modal-category-badge {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #f1f5f9;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+/* 2. 中間作者資訊框：更通透半透明底＋10px 等長四角框線 */
+.modal-author-box {
+  margin-top: 12px;
+  padding: 9px 16px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 0;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px);
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%;
+  background-size: 1.5px 10px, 10px 1.5px;
+  background-repeat: no-repeat;
+}
+
+/* 3. 說明欄：更通透半透明底＋18px 等長四角框線 */
+.modal-desc-box {
+  margin-top: 12px;
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 0;
+  padding: 18px 22px;
+  overflow-y: auto;
+
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to left, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+    linear-gradient(to top, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px);
+  background-position:
+    0 0, 0 0,
+    100% 0, 100% 0,
+    0 100%, 0 100%,
+    100% 100%, 100% 100%;
+  background-size: 1.5px 18px, 18px 1.5px;
+  background-repeat: no-repeat;
+}
+
+/* 橘色作品介紹標題 */
+.modal-desc-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e09f3e;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+.modal-desc-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #f1f5f9;
+  white-space: pre-line;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+/* 4. 說明框外部下方底框版權字串（置中對齊） */
+.modal-footer-copyright {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  flex-shrink: 0;
+}
+
+/* 右上角關閉按鈕（銳利直角） */
+.modal-close-btn {
+  position: fixed;
+  top: 22px;
+  right: 26px;
+  width: 42px;
+  height: 42px;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background-color: rgba(12, 13, 18, 0.62);
+  color: #ffffff;
+  font-size: 1.15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  z-index: 2010;
+}
+
+.modal-close-btn:hover {
+  background-color: rgb(102, 25, 44);
+  border-color: #ffffff;
+}
+
+/* 左右切換作品按鈕（銳利直角） */
+.modal-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 64px;
+  border: none;
+  border-radius: 0;
+  background-color: rgba(12, 13, 18, 0.55);
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  z-index: 2010;
+}
+
+.modal-nav-btn:hover {
+  background-color: rgb(102, 25, 44);
+}
+
+.modal-prev-btn {
+  left: 16px;
+}
+
+.modal-next-btn {
+  right: 16px;
+}
+
+/* 平板與手機版響應式：上圖下文 */
+@media (max-width: 900px) {
+  .portfolio-modal {
+    padding: 64px 16px 24px;
+  }
+
+  .portfolio-modal-container {
+    flex-direction: column;
+    height: 86vh;
+    max-height: none;
+    background-size: 2px 20px, 20px 2px;
+  }
+
+  .portfolio-modal-left {
+    flex: none;
+    height: 42%;
+    padding: 16px 16px 38px;
+  }
+
+  .modal-index-indicator {
+    left: 16px;
+    bottom: 10px;
+  }
+
+  .modal-date-tag {
+    right: 16px;
+    bottom: 10px;
+  }
+
+  .portfolio-modal-right {
+    flex: 1;
+    padding: 14px 20px 10px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-author-box,
+  .modal-desc-box {
+    margin-top: 10px;
+  }
+
+  .modal-nav-btn {
+    width: 36px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .modal-prev-btn {
+    left: 6px;
+  }
+
+  .modal-next-btn {
+    right: 6px;
+  }
 }

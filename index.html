@@ -11,8 +11,10 @@
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
+    <<!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/mystyles.css" rel="stylesheet" />
@@ -172,44 +174,91 @@
             </div>
         </section>
         <hr class="m-0" />
-        <!-- Portfolio (10 張圖片 Bento Grid 網格排版) -->
+      <!-- Portfolio (10 張圖片 Bento Grid 網格排版) -->
         <section class="resume-section" id="portfolio">
             <div class="resume-section-content">
                 <h2 class="mb-5">作品集展示</h2>
                 <div class="bento-grid">
                     <!-- 第一排：3 張 (各佔 4 欄) -->
-                    <div class="bento-item col-span-4">
+                    <div class="bento-item col-span-4"
+                         data-title="作品０１"
+                         data-category="卡通插圖"
+                         data-date="2026.02.27"
+                         data-desc="寶可夢主題卡通桌面">
                         <img src="assets/img/20260227.png" alt="作品 20260227" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-4">
+
+                    <div class="bento-item col-span-4"
+                         data-title="作品０２"
+                         data-category="角色插圖"
+                         data-date="2026.03.22"
+                         data-desc="水墨風格角色人物插圖">
                         <img src="assets/img/20260322.png" alt="作品 20260322" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-4">
+
+                    <div class="bento-item col-span-4"
+                         data-title="作品０３"
+                         data-category="2D插圖"
+                         data-date="2026.08.15"
+                         data-desc="混合不同元素靈感後畫的圖">
                         <img src="assets/img/20260815.png" alt="作品 20260815" class="bento-img">
                     </div>
 
                     <!-- 第二排：4 張 (各佔 3 欄) -->
-                    <div class="bento-item col-span-3">
+                    <div class="bento-item col-span-3"
+                         data-title="白白０１"
+                         data-category="卡通貼圖"
+                         data-date="2026.10.18"
+                         data-desc="自己設計的卡通角色白白的貼圖０１">
                         <img src="assets/img/20261018.png" alt="作品 20261017" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-3">
+
+                    <div class="bento-item col-span-3"
+                         data-title="白白０２"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.03"
+                         data-desc="自己設計的卡通角色白白的貼圖０２">
                         <img src="assets/img/20261103_2.png" alt="作品 20261103_2" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-3">
+
+                    <div class="bento-item col-span-3"
+                         data-title="白白０３"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.03"
+                         data-desc="自己設計的卡通角色白白的貼圖０３">
                         <img src="assets/img/20261103_3.png" alt="作品 20261103_3" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-3">
+
+                    <div class="bento-item col-span-3"
+                         data-title="白白０４"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.05"
+                         data-desc="自己設計的卡通角色白白的貼圖０４">
                         <img src="assets/img/20261105.png" alt="作品 20261105" class="bento-img">
                     </div>
 
                     <!-- 第三排：3 張 (各佔 4 欄) -->
-                    <div class="bento-item col-span-4">
+                    <div class="bento-item col-span-4"
+                         data-title="白白０５"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.05"
+                         data-desc="自己設計的卡通角色白白的貼圖０５">
                         <img src="assets/img/20261105_2.png" alt="作品 20261105_2" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-4">
+
+                    <div class="bento-item col-span-4"
+                         data-title="白白０６"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.09"
+                         data-desc="自己設計的卡通角色白白的貼圖０６">
                         <img src="assets/img/20261109.png" alt="作品 20261109" class="bento-img">
                     </div>
-                    <div class="bento-item col-span-4">
+
+                    <div class="bento-item col-span-4"
+                         data-title="白白０７"
+                         data-category="卡通貼圖"
+                         data-date="2026.11.09"
+                         data-desc="這自己設計的卡通角色白白的貼圖０７">
                         <img src="assets/img/20261109_2.png" alt="作品 20261109_2" class="bento-img">
                     </div>
                 </div>
@@ -217,33 +266,134 @@
         </section>
     </div>
 
-    <!-- 點擊放大 Fullscreen Lightbox -->
-    <div id="lightbox" class="lightbox-modal">
-        <img id="lightbox-img" src="" alt="大圖放大檢視">
+    <!-- 雙欄作品詳情檢視彈窗 -->
+    <div id="portfolio-modal" class="portfolio-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <!-- 右上角關閉按鈕 -->
+        <button type="button" id="modal-close" class="modal-close-btn" aria-label="關閉視窗">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- 左側上一張切換鈕 -->
+        <button type="button" id="modal-prev" class="modal-nav-btn modal-prev-btn" aria-label="上一件作品">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <!-- 中央左圖右文主面板 -->
+        <div class="portfolio-modal-container" id="modal-card">
+            <!-- 左欄：作品圖片展示 + 右下角日期 -->
+            <div class="portfolio-modal-left">
+                <div class="modal-img-wrapper">
+                    <img id="modal-img" src="" alt="作品預覽">
+                </div>
+                <span class="modal-index-indicator" id="modal-counter">1 / 10</span>
+                <span class="modal-date-tag" id="modal-date">2026.02.27</span>
+            </div>
+
+            <div class="portfolio-modal-right">
+                <div class="modal-header-bar">
+                    <h3 id="modal-title" class="modal-title">作品標題</h3>
+                    <span id="modal-category" class="modal-category-badge">分類</span>
+                </div>
+
+                <div class="modal-author-box">illus.OSCAR Tsai</div>
+
+                <div class="modal-desc-box">
+                    <div class="modal-desc-label">【作品介紹】</div>
+                    <p id="modal-desc" class="modal-desc-text"></p>
+                </div>
+
+                <div class="modal-footer-copyright">@2026 a113080042-coder.github.io</div>
+            </div>
+        </div>
+
+        <!-- 右側下一張切換鈕 -->
+        <button type="button" id="modal-next" class="modal-nav-btn modal-next-btn" aria-label="下一件作品">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
-    <!-- Lightbox JS 控制程序 -->
+    <!-- 作品集雙欄彈窗控制腳本 -->
     <script>
-        // 點擊作品圖片開啟大圖
-        document.querySelectorAll('.bento-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                if (img) {
-                    const lightbox = document.getElementById('lightbox');
-                    const lightboxImg = document.getElementById('lightbox-img');
-                    lightboxImg.src = img.src;
-                    lightbox.classList.add('active');
-                }
-            });
+        const bentoItems = Array.from(document.querySelectorAll('.bento-item'));
+        const modal = document.getElementById('portfolio-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCategory = document.getElementById('modal-category');
+        const modalDate = document.getElementById('modal-date');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalCounter = document.getElementById('modal-counter');
+
+        const closeBtn = document.getElementById('modal-close');
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+
+        let currentIndex = 0;
+
+        function renderModalContent(index) {
+            const item = bentoItems[index];
+            if (!item) return;
+
+            const img = item.querySelector('img');
+            modalImg.src = img ? img.src : '';
+            modalImg.alt = img ? img.alt : '作品預覽';
+            modalTitle.textContent = item.dataset.title || (img ? img.alt : '未命名作品');
+            modalCategory.textContent = item.dataset.category || '作品集';
+            modalDate.textContent = item.dataset.date || '';
+            modalDesc.textContent = item.dataset.desc || '尚無作品說明。';
+            modalCounter.textContent = `${index + 1} / ${bentoItems.length}`;
+        }
+
+        function openModal(index) {
+            currentIndex = index;
+            renderModalContent(currentIndex);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function showPrev() {
+            currentIndex = (currentIndex - 1 + bentoItems.length) % bentoItems.length;
+            renderModalContent(currentIndex);
+        }
+
+        function showNext() {
+            currentIndex = (currentIndex + 1) % bentoItems.length;
+            renderModalContent(currentIndex);
+        }
+
+        bentoItems.forEach((item, index) => {
+            item.addEventListener('click', () => openModal(index));
         });
 
-        // 再次點擊畫面任意處關閉大圖並返回總覽
-        document.getElementById('lightbox').addEventListener('click', () => {
-            document.getElementById('lightbox').classList.remove('active');
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPrev();
+        });
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNext();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
         });
     </script>
 </body>
